@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="page-container">
+    <div class="auth-card" style="max-width: 600px;">
+      <h1>Contact Us</h1>
+      <p class="auth-subtitle">We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+      <form class="auth-form" onsubmit="event.preventDefault(); this.innerHTML='<div style=\'text-align:center;padding:40px 0;\'><h2>Message Sent!</h2><p style=\'color:var(--text-secondary);margin-top:8px;\'>We\'ll get back to you within 24 hours.</p><a href=\'index.html\' class=\'btn btn-primary\' style=\'margin-top:20px;\'>Back to Home</a></div>';">
+        <label>Name</label>
+        <input type="text" placeholder="Your name" required>
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+        <label>Subject</label>
+        <select>
+          <option>General Inquiry</option>
+          <option>Technical Support</option>
+          <option>Billing Question</option>
+          <option>Press Inquiry</option>
+          <option>Partnership</option>
+        </select>
+        <label>Message</label>
+        <textarea placeholder="How can we help?" rows="5" required></textarea>
+        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>renderSharedLayout("home");</script>
+</body>
+</html>

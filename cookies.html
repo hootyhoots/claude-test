@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Preferences - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="subpage">
+    <h1>Cookie Preferences</h1>
+    <div class="info-content legal-content">
+      <p>StreamVibe uses cookies and similar tracking technologies to provide and improve our service.</p>
+
+      <h2>What Are Cookies?</h2>
+      <p>Cookies are small text files stored on your device when you visit a website. They help us remember your preferences, understand how you use our service, and personalize your experience.</p>
+
+      <h2>Your Preferences</h2>
+      <form class="cookie-form" onsubmit="event.preventDefault(); document.getElementById('cookieSaved').style.display='block';">
+        <div class="cookie-option">
+          <div>
+            <h3>Essential Cookies</h3>
+            <p>Required for the service to function. Cannot be disabled.</p>
+          </div>
+          <label class="toggle"><input type="checkbox" checked disabled><span class="toggle-slider"></span></label>
+        </div>
+        <div class="cookie-option">
+          <div>
+            <h3>Performance Cookies</h3>
+            <p>Help us understand how visitors interact with our service.</p>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="cookie-option">
+          <div>
+            <h3>Personalization Cookies</h3>
+            <p>Used to provide personalized content recommendations.</p>
+          </div>
+          <label class="toggle"><input type="checkbox" checked><span class="toggle-slider"></span></label>
+        </div>
+        <div class="cookie-option">
+          <div>
+            <h3>Marketing Cookies</h3>
+            <p>Used to deliver relevant advertisements.</p>
+          </div>
+          <label class="toggle"><input type="checkbox"><span class="toggle-slider"></span></label>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Preferences</button>
+        <p id="cookieSaved" style="display:none; color: #4caf50; margin-top: 12px;">Preferences saved successfully.</p>
+      </form>
+
+      <p style="margin-top: 32px;">For more information, see our <a href="privacy.html">Privacy Policy</a>.</p>
+    </div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>renderSharedLayout("home");</script>
+</body>
+</html>

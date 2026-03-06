@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trending - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="subpage">
+    <h1>Trending Now</h1>
+    <p class="subpage-intro">The most popular titles on StreamVibe right now.</p>
+
+    <div class="mylist-grid" id="trendingGrid"></div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    renderSharedLayout("trending");
+
+    const items = sharedContent.slice(0, 10);
+    const grid = document.getElementById("trendingGrid");
+
+    items.forEach((item, i) => {
+      const card = document.createElement("div");
+      card.className = "content-card";
+      card.onclick = () => window.location.href = "title.html?title=" + titleToSlug(item.title);
+      card.innerHTML = `
+        <div class="card-image">
+          <div class="card-poster" style="background: linear-gradient(135deg, ${item.color}, ${item.color}dd);">
+            <span class="trending-rank">${i + 1}</span>
+          </div>
+          <div class="card-overlay">
+            <button class="card-play" onclick="event.stopPropagation(); window.location.href='player.html?title=${titleToSlug(item.title)}'">&#9654;</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3>${item.title}</h3>
+          <div class="card-meta">
+            <span class="card-rating">&#9733; ${item.rating}</span>
+            <span>${item.year}</span>
+            <span>${item.genre}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

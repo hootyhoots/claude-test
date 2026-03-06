@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="subpage">
+    <h1 id="categoryTitle">Browse by Category</h1>
+    <p class="subpage-intro" id="categorySubtitle">Explore our library by genre.</p>
+
+    <div class="categories-grid" id="categoriesNav">
+      <a href="category.html?genre=Action" class="category-card" style="--accent: #e50914;"><div class="category-icon">&#127916;</div><h3>Action</h3></a>
+      <a href="category.html?genre=Comedy" class="category-card" style="--accent: #e8b708;"><div class="category-icon">&#128514;</div><h3>Comedy</h3></a>
+      <a href="category.html?genre=Horror" class="category-card" style="--accent: #0077b6;"><div class="category-icon">&#128123;</div><h3>Horror</h3></a>
+      <a href="category.html?genre=Romance" class="category-card" style="--accent: #6a0572;"><div class="category-icon">&#128156;</div><h3>Romance</h3></a>
+      <a href="category.html?genre=Sci-Fi" class="category-card" style="--accent: #2d6a4f;"><div class="category-icon">&#127758;</div><h3>Sci-Fi</h3></a>
+      <a href="category.html?genre=Drama" class="category-card" style="--accent: #d4a373;"><div class="category-icon">&#127871;</div><h3>Drama</h3></a>
+      <a href="category.html?genre=Thriller" class="category-card" style="--accent: #4a4e69;"><div class="category-icon">&#128373;</div><h3>Thriller</h3></a>
+      <a href="category.html?genre=Historical" class="category-card" style="--accent: #8b6914;"><div class="category-icon">&#127984;</div><h3>Historical</h3></a>
+    </div>
+
+    <div class="mylist-grid" id="categoryGrid" style="margin-top: 40px;"></div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    renderSharedLayout("categories");
+
+    const params = new URLSearchParams(window.location.search);
+    const genre = params.get("genre");
+
+    if (genre) {
+      document.title = genre + " - StreamVibe";
+      document.getElementById("categoryTitle").textContent = genre;
+      document.getElementById("categorySubtitle").textContent = "Showing all " + genre.toLowerCase() + " titles.";
+
+      const items = sharedContent.filter(c => c.genre === genre);
+      const grid = document.getElementById("categoryGrid");
+
+      items.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "content-card";
+        card.onclick = () => window.location.href = "title.html?title=" + titleToSlug(item.title);
+        card.innerHTML = `
+          <div class="card-image">
+            <div class="card-poster" style="background: linear-gradient(135deg, ${item.color}, ${item.color}dd);">
+              ${item.title.charAt(0)}
+            </div>
+            <div class="card-overlay">
+              <button class="card-play" onclick="event.stopPropagation(); window.location.href='player.html?title=${titleToSlug(item.title)}'">&#9654;</button>
+            </div>
+          </div>
+          <div class="card-info">
+            <h3>${item.title}</h3>
+            <div class="card-meta">
+              <span class="card-rating">&#9733; ${item.rating}</span>
+              <span>${item.year}</span>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      if (items.length === 0) {
+        grid.innerHTML = '<p style="color: var(--text-secondary);">No titles found in this category yet.</p>';
+      }
+    }
+  </script>
+</body>
+</html>

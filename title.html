@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Title Details - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="title-page">
+    <div class="title-hero" id="titleHero"></div>
+    <div class="title-content" id="titleContent"></div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    renderSharedLayout("home");
+
+    const params = new URLSearchParams(window.location.search);
+    const titleParam = params.get("title");
+    const item = titleParam ? findContent(decodeURIComponent(titleParam)) : sharedContent[0];
+
+    if (item) {
+      document.title = item.title + " - StreamVibe";
+
+      document.getElementById("titleHero").style.background =
+        "linear-gradient(135deg, " + item.color + ", " + item.color + "66, #0a0a0a)";
+
+      document.getElementById("titleContent").innerHTML = `
+        <div class="title-main">
+          <div class="title-poster" style="background: linear-gradient(135deg, ${item.color}, ${item.color}dd);">
+            <span>${item.title.charAt(0)}</span>
+          </div>
+          <div class="title-info">
+            ${item.original ? '<span class="hero-badge">StreamVibe Original</span>' : ''}
+            <h1>${item.title}</h1>
+            <div class="hero-meta">
+              <span class="rating">&#9733; ${item.rating}</span>
+              <span>${item.year}</span>
+              <span>${item.duration}</span>
+              <span class="maturity">${item.maturity}</span>
+              <span>${item.genre}</span>
+            </div>
+            <p class="title-description">${item.description}</p>
+            <div class="title-actions">
+              <a href="player.html?title=${titleToSlug(item.title)}" class="btn btn-primary btn-lg">&#9654; Play Now</a>
+              <a href="mylist.html" class="btn btn-outline btn-lg">+ My List</a>
+            </div>
+          </div>
+        </div>
+        <div class="title-details-grid">
+          <div class="title-detail-card">
+            <h3>Details</h3>
+            <p><strong>Genre:</strong> ${item.genre}</p>
+            <p><strong>Release Year:</strong> ${item.year}</p>
+            <p><strong>Duration:</strong> ${item.duration}</p>
+            <p><strong>Rating:</strong> ${item.maturity}</p>
+          </div>
+          <div class="title-detail-card">
+            <h3>Cast & Crew</h3>
+            <p><strong>Director:</strong> Alex Morgan</p>
+            <p><strong>Stars:</strong> Jamie Lee, Ryan Chen, Sofia Alvarez</p>
+            <p><strong>Writer:</strong> Pat Williams</p>
+          </div>
+          <div class="title-detail-card">
+            <h3>More Like This</h3>
+            <div class="related-links">
+              ${sharedContent.filter(c => c.genre === item.genre && c.title !== item.title).slice(0, 3).map(c =>
+                `<a href="title.html?title=${titleToSlug(c.title)}">${c.title}</a>`
+              ).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>

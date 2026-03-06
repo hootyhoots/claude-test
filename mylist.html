@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My List - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="subpage">
+    <h1>My List</h1>
+    <p class="subpage-intro">Your saved movies and shows, ready to watch anytime.</p>
+
+    <div class="mylist-grid" id="mylistGrid"></div>
+
+    <div class="mylist-empty" id="mylistEmpty">
+      <div class="empty-icon">&#128214;</div>
+      <h2>Your list is waiting</h2>
+      <p>Browse our catalog and add titles you want to watch later.</p>
+      <a href="index.html" class="btn btn-primary">Browse Catalog</a>
+    </div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    renderSharedLayout("home");
+
+    // Show a few "saved" items for demo
+    const savedItems = sharedContent.slice(0, 6);
+    const grid = document.getElementById("mylistGrid");
+    document.getElementById("mylistEmpty").style.display = "none";
+
+    savedItems.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "content-card";
+      card.onclick = () => window.location.href = "title.html?title=" + titleToSlug(item.title);
+      card.innerHTML = `
+        <div class="card-image">
+          <div class="card-poster" style="background: linear-gradient(135deg, ${item.color}, ${item.color}dd);">
+            ${item.title.charAt(0)}
+          </div>
+          <div class="card-overlay">
+            <button class="card-play" onclick="event.stopPropagation(); window.location.href='player.html?title=${titleToSlug(item.title)}'">&#9654;</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3>${item.title}</h3>
+          <div class="card-meta">
+            <span class="card-rating">&#9733; ${item.rating}</span>
+            <span>${item.year}</span>
+            <span>${item.genre}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>

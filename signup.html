@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Free Trial - StreamVibe</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="page-container">
+    <div class="auth-card">
+      <h1>Start Your Free Trial</h1>
+      <p class="auth-subtitle">7 days free. No commitment. Cancel anytime.</p>
+      <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='index.html';">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Doe" required>
+        <label>Email</label>
+        <input type="email" placeholder="you@example.com" required>
+        <label>Password</label>
+        <input type="password" placeholder="Create a password" required>
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Confirm your password" required>
+        <div class="plan-selector">
+          <h3>Choose Your Plan</h3>
+          <label class="plan-option">
+            <input type="radio" name="plan" value="basic">
+            <span>Basic - $7.99/mo</span>
+          </label>
+          <label class="plan-option selected">
+            <input type="radio" name="plan" value="standard" checked>
+            <span>Standard - $13.99/mo <span class="popular-tag">Popular</span></span>
+          </label>
+          <label class="plan-option">
+            <input type="radio" name="plan" value="premium">
+            <span>Premium - $19.99/mo</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Start Free Trial</button>
+      </form>
+      <p class="auth-footer">Already have an account? <a href="signin.html">Sign In</a></p>
+    </div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>renderSharedLayout("home");</script>
+</body>
+</html>

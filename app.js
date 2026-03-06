@@ -33,17 +33,22 @@ const continueWatching = [
 
 const allContent = [...trendingContent, ...originalsContent];
 
+function titleToSlug(title) {
+  return encodeURIComponent(title);
+}
+
 // === Render Content Cards ===
 function createCard(item, showProgress) {
   const card = document.createElement("div");
   card.className = "content-card";
+  card.onclick = () => window.location.href = "title.html?title=" + titleToSlug(item.title);
   card.innerHTML = `
     <div class="card-image">
       <div class="card-poster" style="background: linear-gradient(135deg, ${item.color}, ${item.color}dd);">
         ${item.title.charAt(0)}
       </div>
       <div class="card-overlay">
-        <button class="card-play">&#9654;</button>
+        <button class="card-play" onclick="event.stopPropagation(); window.location.href='player.html?title=${titleToSlug(item.title)}'">&#9654;</button>
       </div>
     </div>
     <div class="card-info">
@@ -122,8 +127,11 @@ searchInput.addEventListener("input", (e) => {
   );
 
   matches.forEach((item) => {
-    const resultEl = document.createElement("div");
+    const resultEl = document.createElement("a");
     resultEl.className = "search-result-item";
+    resultEl.href = "title.html?title=" + titleToSlug(item.title);
+    resultEl.style.textDecoration = "none";
+    resultEl.style.color = "inherit";
     resultEl.innerHTML = `
       <div class="search-result-thumb" style="background: ${item.color}; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,0.3); font-weight: bold;">${item.title.charAt(0)}</div>
       <div class="search-result-info">

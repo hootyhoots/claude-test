@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamVibe Originals</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="page-header"></div>
+
+  <div class="subpage">
+    <h1>StreamVibe Originals</h1>
+    <p class="subpage-intro">Exclusive content you won't find anywhere else.</p>
+
+    <div class="mylist-grid" id="originalsGrid"></div>
+  </div>
+
+  <div id="page-footer"></div>
+  <script src="shared.js"></script>
+  <script>
+    renderSharedLayout("originals");
+
+    const items = sharedContent.filter(c => c.original);
+    const grid = document.getElementById("originalsGrid");
+
+    items.forEach(item => {
+      const card = document.createElement("div");
+      card.className = "content-card";
+      card.onclick = () => window.location.href = "title.html?title=" + titleToSlug(item.title);
+      card.innerHTML = `
+        <div class="card-image">
+          <div class="card-poster" style="background: linear-gradient(135deg, ${item.color}, ${item.color}dd);">
+            ${item.title.charAt(0)}
+          </div>
+          <div class="card-overlay">
+            <button class="card-play" onclick="event.stopPropagation(); window.location.href='player.html?title=${titleToSlug(item.title)}'">&#9654;</button>
+          </div>
+        </div>
+        <div class="card-info">
+          <h3>${item.title}</h3>
+          <div class="card-meta">
+            <span class="card-rating">&#9733; ${item.rating}</span>
+            <span>${item.year}</span>
+            <span>${item.genre}</span>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  </script>
+</body>
+</html>
