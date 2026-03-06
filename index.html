@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamVibe - Watch Anything, Anytime</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">
+        <span class="logo-icon">&#9654;</span>
+        <span class="logo-text">StreamVibe</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" class="active">Home</a></li>
+        <li><a href="#trending">Trending</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#originals">Originals</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="search-btn" id="searchBtn" aria-label="Search">&#128269;</button>
+        <button class="btn btn-outline">Sign In</button>
+        <button class="btn btn-primary">Start Free Trial</button>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">&#9776;</button>
+    </nav>
+  </header>
+
+  <!-- Search Overlay -->
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <input type="text" class="search-input" id="searchInput" placeholder="Search movies, shows, genres...">
+      <button class="search-close" id="searchClose">&times;</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span class="hero-badge">StreamVibe Original</span>
+      <h1 class="hero-title">The Last Frontier</h1>
+      <p class="hero-description">In a world where reality bends, one explorer must journey beyond the edges of known space to save what remains of humanity. A gripping sci-fi epic that will leave you breathless.</p>
+      <div class="hero-meta">
+        <span class="rating">&#9733; 9.2</span>
+        <span>2026</span>
+        <span>2h 34m</span>
+        <span class="maturity">TV-MA</span>
+      </div>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg">&#9654; Play Now</button>
+        <button class="btn btn-outline btn-lg">+ My List</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trending Section -->
+  <section class="section" id="trending">
+    <div class="section-header">
+      <h2>Trending Now</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="scrollCarousel('trending-row', -1)">&#10094;</button>
+        <button class="carousel-btn" onclick="scrollCarousel('trending-row', 1)">&#10095;</button>
+      </div>
+    </div>
+    <div class="content-row" id="trending-row">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" id="categories">
+    <div class="section-header">
+      <h2>Browse by Category</h2>
+    </div>
+    <div class="categories-grid">
+      <div class="category-card" style="--accent: #e50914;">
+        <div class="category-icon">&#127916;</div>
+        <h3>Action</h3>
+        <p>1,200+ titles</p>
+      </div>
+      <div class="category-card" style="--accent: #e8b708;">
+        <div class="category-icon">&#128514;</div>
+        <h3>Comedy</h3>
+        <p>980+ titles</p>
+      </div>
+      <div class="category-card" style="--accent: #0077b6;">
+        <div class="category-icon">&#128123;</div>
+        <h3>Horror</h3>
+        <p>650+ titles</p>
+      </div>
+      <div class="category-card" style="--accent: #6a0572;">
+        <div class="category-icon">&#128156;</div>
+        <h3>Romance</h3>
+        <p>870+ titles</p>
+      </div>
+      <div class="category-card" style="--accent: #2d6a4f;">
+        <div class="category-icon">&#127758;</div>
+        <h3>Sci-Fi</h3>
+        <p>540+ titles</p>
+      </div>
+      <div class="category-card" style="--accent: #d4a373;">
+        <div class="category-icon">&#127871;</div>
+        <h3>Documentary</h3>
+        <p>430+ titles</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Originals -->
+  <section class="section" id="originals">
+    <div class="section-header">
+      <h2>StreamVibe Originals</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="scrollCarousel('originals-row', -1)">&#10094;</button>
+        <button class="carousel-btn" onclick="scrollCarousel('originals-row', 1)">&#10095;</button>
+      </div>
+    </div>
+    <div class="content-row" id="originals-row">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- Continue Watching -->
+  <section class="section">
+    <div class="section-header">
+      <h2>Continue Watching</h2>
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="scrollCarousel('continue-row', -1)">&#10094;</button>
+        <button class="carousel-btn" onclick="scrollCarousel('continue-row', 1)">&#10095;</button>
+      </div>
+    </div>
+    <div class="content-row" id="continue-row">
+      <!-- Populated by JS -->
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="section pricing-section" id="pricing">
+    <div class="section-header centered">
+      <h2>Choose Your Plan</h2>
+      <p class="section-subtitle">Start with a 7-day free trial. Cancel anytime.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Basic</h3>
+        <div class="price">$7.99<span>/mo</span></div>
+        <ul>
+          <li>HD streaming</li>
+          <li>Watch on 1 device</li>
+          <li>Limited downloads</li>
+          <li>Ad-supported</li>
+        </ul>
+        <button class="btn btn-outline btn-block">Get Started</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="popular-badge">Most Popular</div>
+        <h3>Standard</h3>
+        <div class="price">$13.99<span>/mo</span></div>
+        <ul>
+          <li>Full HD streaming</li>
+          <li>Watch on 3 devices</li>
+          <li>Unlimited downloads</li>
+          <li>Ad-free</li>
+        </ul>
+        <button class="btn btn-primary btn-block">Get Started</button>
+      </div>
+      <div class="pricing-card">
+        <h3>Premium</h3>
+        <div class="price">$19.99<span>/mo</span></div>
+        <ul>
+          <li>4K + HDR streaming</li>
+          <li>Watch on 5 devices</li>
+          <li>Unlimited downloads</li>
+          <li>Ad-free + early access</li>
+        </ul>
+        <button class="btn btn-outline btn-block">Get Started</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="logo">
+          <span class="logo-icon">&#9654;</span>
+          <span class="logo-text">StreamVibe</span>
+        </div>
+        <p class="footer-tagline">Your universe of entertainment. Stream thousands of movies, shows, and originals.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Accessibility</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Cookie Preferences</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 StreamVibe, Inc. All rights reserved. This is a fictional streaming service.</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
